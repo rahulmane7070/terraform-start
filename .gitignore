@@ -1,0 +1,6 @@
+access.tf
+*~
+*#
+terraform.tfstate
+*.pem
+terraform.tfstate.backup
