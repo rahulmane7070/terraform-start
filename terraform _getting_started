@@ -1,0 +1,72 @@
+
+### install  openssl ########################################
+  wget https://www.openssl.org/source/openssl-1.1.0f.tar.gz
+  973  tar xzvf openssl-1.1.0f.tar.gz
+  974  cd openssl-1.1.0f
+  975  /config -Wl,--enable-new-dtags,-rpath,'$(LIBRPATH)'
+  976  cd /config -Wl,--enable-new-dtags,-rpath,'$(LIBRPATH)'
+  977  ./config -Wl,--enable-new-dtags,-rpath,'$(LIBRPATH)'
+  978  make
+  979  sudo make install
+  980  openssl version -a
+#############################################################################
+
+
+  982  cd ..
+  983  cd my-terraform/
+###### Generate the private and public keys ####################################
+  984  openssl genpkey -algorithm RSA -out terraform.pem -pkeyopt rsa_keygen_bits:2048
+  985  ls
+  986  openssl rsa -pubout -in terraform.pem
+  987  openssl rsa -pubout -in terraform.pem -out terraform_pub.pem
+##################################################################################
+
+#### Add the key pub key to variables.tf file
+
+  988  ls
+  989  cat terraform_pub.pem
+  990  vim variables.tf
+  991  terraform plan
+  992  terraform apply
+  993  ls -la
+
+#############  Add the data for aws instace creation   with you keypair ###############
+  994  vim main.tf
+  995  terraform plan
+  996  vim main.tf
+  997  terraform plan
+  998  vim main.tf
+  999  terraform plan
+ 1000  terraform apply
+##########################################
+ 1001  ssh -i terraform.pem ubuntu@54.172.18.97
+ 1002  ls
+ 1003  ssh -i terraform.pem ubuntu@54.172.18.97
+ 1004  clear
+ 1005  ssh -i terraform.pem ubuntu@54.172.18.97
+ 1006  vim main.tf
+
+ ############## Create and add .gitignore file ########3
+ 1007  touch .gitignore
+ 1008  vim .gitignore
+ 1009  ssh -i terraform.pem ubuntu@54.172.18.97
+ 1010  vim .gitignore
+ 1011  git add
+ 1012  git init
+ 1013  git add
+ 1014  git status
+ 1015  vim .gitignore
+ 1016  git status
+ 1017  echo "# terraform-start" >> README.md
+ 1018  git init
+ 1019  git status
+ 1020  git add .
+ 1021  git commit -m "first terraform hands on"
+ 1022  git remote add origin https://github.com/rahulmane7070/terraform-start.git
+ 1023  git push -u origin master
+ 1024  ll -la
+ 1025  vim .gitignore
+ 1026  git add .
+ 1027  git commit -m "first terraform hands on"
+ 1028  git push -u origin master
+ 1029  terraform destroy
